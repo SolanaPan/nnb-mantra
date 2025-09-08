@@ -1,0 +1,16 @@
+vue/node_modules
+vue/dist
+release/
+.idea/
+.vscode/
+.DS_Store
+*.dot
+*.log
+*.ign
+.aider*
+swagger-proto
+tmp-swagger-gen
+client/docs/node_modules
+build
+exclusive.lock
+coverage.txt
