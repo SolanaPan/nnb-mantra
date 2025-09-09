@@ -39,22 +39,22 @@ import (
 	wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
 
 	// Force-load the tracer engines to trigger registration due to Go-Ethereum v1.10.15 changes
-	"github.com/MANTRA-Chain/mantrachain/v5/app/ante"
-	_ "github.com/MANTRA-Chain/mantrachain/v5/app/params"
-	queries "github.com/MANTRA-Chain/mantrachain/v5/app/queries"
-	"github.com/MANTRA-Chain/mantrachain/v5/app/upgrades"
-	v5 "github.com/MANTRA-Chain/mantrachain/v5/app/upgrades/v5"
-	_ "github.com/MANTRA-Chain/mantrachain/v5/client/docs/statik"
-	"github.com/MANTRA-Chain/mantrachain/v5/client/docs/swagger"
-	sanctionkeeper "github.com/MANTRA-Chain/mantrachain/v5/x/sanction/keeper"
-	sanction "github.com/MANTRA-Chain/mantrachain/v5/x/sanction/module"
-	sanctiontypes "github.com/MANTRA-Chain/mantrachain/v5/x/sanction/types"
-	taxkeeper "github.com/MANTRA-Chain/mantrachain/v5/x/tax/keeper"
-	tax "github.com/MANTRA-Chain/mantrachain/v5/x/tax/module"
-	taxtypes "github.com/MANTRA-Chain/mantrachain/v5/x/tax/types"
-	"github.com/MANTRA-Chain/mantrachain/v5/x/tokenfactory"
-	tokenfactorykeeper "github.com/MANTRA-Chain/mantrachain/v5/x/tokenfactory/keeper"
-	tokenfactorytypes "github.com/MANTRA-Chain/mantrachain/v5/x/tokenfactory/types"
+	"github.com/SolanaPan/nnb/v1/app/ante"
+	_ "github.com/SolanaPan/nnb/v1/app/params"
+	queries "github.com/SolanaPan/nnb/v1/app/queries"
+	"github.com/SolanaPan/nnb/v1/app/upgrades"
+	v5 "github.com/SolanaPan/nnb/v1/app/upgrades/v5"
+	_ "github.com/SolanaPan/nnb/v1/client/docs/statik"
+	"github.com/SolanaPan/nnb/v1/client/docs/swagger"
+	sanctionkeeper "github.com/SolanaPan/nnb/v1/x/sanction/keeper"
+	sanction "github.com/SolanaPan/nnb/v1/x/sanction/module"
+	sanctiontypes "github.com/SolanaPan/nnb/v1/x/sanction/types"
+	taxkeeper "github.com/SolanaPan/nnb/v1/x/tax/keeper"
+	tax "github.com/SolanaPan/nnb/v1/x/tax/module"
+	taxtypes "github.com/SolanaPan/nnb/v1/x/tax/types"
+	"github.com/SolanaPan/nnb/v1/x/tokenfactory"
+	tokenfactorykeeper "github.com/SolanaPan/nnb/v1/x/tokenfactory/keeper"
+	tokenfactorytypes "github.com/SolanaPan/nnb/v1/x/tokenfactory/types"
 	abci "github.com/cometbft/cometbft/abci/types"
 	tmproto "github.com/cometbft/cometbft/proto/tendermint/types"
 	dbm "github.com/cosmos/cosmos-db"
@@ -182,7 +182,7 @@ func init() {
 	sdk.DefaultPowerReduction = cosmosevmtypes.MicroPowerReduction
 	stakingtypes.DefaultMinCommissionRate = math.LegacyZeroDec()
 
-	// DefaultNodeHome default home directories for mantrachaind
+	// DefaultNodeHome default home directories for nnbd
 	var err error
 	DefaultNodeHome, err = clienthelpers.GetNodeHomeDirectory(NodeDir)
 	if err != nil {
@@ -1084,7 +1084,7 @@ func New(
 
 	// must be before Loading version
 	// requires the snapshot store to be created and registered as a BaseAppOption
-	// see cmd/mantrachaind/root.go: 206 - 214 approx
+	// see cmd/nnbd/root.go: 206 - 214 approx
 	if manager := app.SnapshotManager(); manager != nil {
 		err := manager.RegisterExtensions(
 			wasmkeeper.NewWasmSnapshotter(app.CommitMultiStore(), &app.WasmKeeper),

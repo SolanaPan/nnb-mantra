@@ -1,7 +1,7 @@
 package keeper
 
 import (
-	"github.com/MANTRA-Chain/mantrachain/v5/x/tax/types"
+	"github.com/SolanaPan/nnb/v1/x/tax/types"
 )
 
 var _ types.QueryServer = queryServer{}

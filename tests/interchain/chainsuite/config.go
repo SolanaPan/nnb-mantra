@@ -127,7 +127,7 @@ func DefaultSuiteConfig(env Environment) SuiteConfig {
 				Type:                 "cosmos",
 				Name:                 "mantra",
 				ChainID:              "mantra-test-1",
-				Bin:                  "mantrachaind",
+				Bin:                  "nnbd",
 				Bech32Prefix:         "mantra",
 				CoinType:             "118",
 				TrustingPeriod:       "48h",

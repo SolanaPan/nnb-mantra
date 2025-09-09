@@ -11,7 +11,7 @@ help:
 	@echo "Usage:"
 	@echo "    make [command]"
 	@echo ""
-	@echo "  make build                 Build mantrachaind binary"
+	@echo "  make build                 Build nnbd binary"
 	@echo "  make lint                  Show available lint commands"
 	@echo "  make test                  Show available test commands"
 	@echo "  make proto                 Show available proto commands"
@@ -85,7 +85,7 @@ build_tags_comma_sep := $(subst $(whitespace),$(comma),$(build_tags))
 # process linker flags
 
 ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=mantrachain \
-	-X github.com/cosmos/cosmos-sdk/version.AppName=mantrachaind \
+	-X github.com/cosmos/cosmos-sdk/version.AppName=nnbd \
 	-X github.com/cosmos/cosmos-sdk/version.Version=$(VERSION) \
 	-X github.com/cosmos/cosmos-sdk/version.Commit=$(COMMIT) \
 	-X github.com/cosmos/cosmos-sdk/version.BuildTags=$(build_tags_comma_sep) \
@@ -126,7 +126,7 @@ build-image:
 	docker build -f Dockerfile -t mantra-chain/mantrachain .
 
 $(BUILD_TARGETS): go.sum $(BUILDDIR)/
-	go $@ -mod=readonly $(BUILD_FLAGS) $(BUILD_ARGS) $(GO_MODULE)/cmd/mantrachaind
+	go $@ -mod=readonly $(BUILD_FLAGS) $(BUILD_ARGS) $(GO_MODULE)/cmd/nnbd
 $(BUILDDIR)/:
 	mkdir -p $(BUILDDIR)/
 
@@ -190,8 +190,8 @@ release:
 		-e CMT_VERSION=$(CMT_VERSION) \
 		-e REPO_OWNER=$(REPO_OWNER) \
 		-e REPO_NAME=$(REPO_NAME) \
-		-v `pwd`:/go/src/mantrachaind \
-		-w /go/src/mantrachaind \
+		-v `pwd`:/go/src/nnbd \
+		-w /go/src/nnbd \
 		--platform=$(GORELEASER_PLATFORM) \
 		$(GORELEASER_IMAGE) \
 		release $(if $(GORELEASER_SKIP),--skip=$(GORELEASER_SKIP)) $(if $(GORELEASER_CONFIG),--config=$(GORELEASER_CONFIG)) \
@@ -210,8 +210,8 @@ goreleaser-build-local:
 		-e CMT_VERSION=$(CMT_VERSION) \
 		-e REPO_OWNER=$(REPO_OWNER) \
 		-e REPO_NAME=$(REPO_NAME) \
-		-v `pwd`:/go/src/mantrachaind \
-		-w /go/src/mantrachaind \
+		-v `pwd`:/go/src/nnbd \
+		-w /go/src/nnbd \
 		--platform=$(GORELEASER_PLATFORM) \
 		$(GORELEASER_IMAGE) \
 		build $(if $(GORELEASER_IDS),$(shell echo $(GORELEASER_IDS) | tr ',' ' ' | sed 's/[^ ]*/--id=&/g')) \
@@ -238,13 +238,13 @@ build-and-run-single-node: build
 	@echo "Building and running a single node for testing..."
 	@mkdir -p .mantrasinglenodetest
 	@if [ ! -f .mantrasinglenodetest/config/config.toml ]; then \
-		./build/mantrachaind init single-node-test --chain-id test-chain --home .mantrasinglenodetest --default-denom uom; \
-		./build/mantrachaind keys add validator --keyring-backend test --home .mantrasinglenodetest; \
-		./build/mantrachaind genesis add-genesis-account $$(./build/mantrachaind keys show validator -a --keyring-backend test --home .mantrasinglenodetest) 100000000000000uom --home .mantrasinglenodetest; \
-		./build/mantrachaind genesis gentx validator 100000000uom --chain-id test-chain --keyring-backend test --home .mantrasinglenodetest; \
-		./build/mantrachaind genesis collect-gentxs --home .mantrasinglenodetest; \
+		./build/nnbd init single-node-test --chain-id test-chain --home .mantrasinglenodetest --default-denom uom; \
+		./build/nnbd keys add validator --keyring-backend test --home .mantrasinglenodetest; \
+		./build/nnbd genesis add-genesis-account $$(./build/nnbd keys show validator -a --keyring-backend test --home .mantrasinglenodetest) 100000000000000uom --home .mantrasinglenodetest; \
+		./build/nnbd genesis gentx validator 100000000uom --chain-id test-chain --keyring-backend test --home .mantrasinglenodetest; \
+		./build/nnbd genesis collect-gentxs --home .mantrasinglenodetest; \
 		sed -i'' -e 's/"fee_denom": "stake"/"fee_denom": "uom"/' .mantrasinglenodetest/config/genesis.json; \
 	fi
-	./build/mantrachaind start --home .mantrasinglenodetest --minimum-gas-prices 0uom
+	./build/nnbd start --home .mantrasinglenodetest --minimum-gas-prices 0uom
 
 .PHONY: build-and-run-single-node

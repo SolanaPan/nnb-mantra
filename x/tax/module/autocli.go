@@ -2,7 +2,7 @@ package tax
 
 import (
 	autocliv1 "cosmossdk.io/api/cosmos/autocli/v1"
-	taxapi "github.com/MANTRA-Chain/mantrachain/v5/api/mantrachain/tax/v1"
+	taxapi "github.com/SolanaPan/nnb/v1/api/mantrachain/tax/v1"
 )
 
 // AutoCLIOptions implements the autocli.HasAutoCLIConfig interface.
@@ -39,7 +39,7 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 						},
 					},
 					Short:   "Update the parameters of the tax module",
-					Example: "mantrachaind tx tax update-params --mca_tax 0.4 --mca_address mantra1axznhnm82lah8qqvp9hxdad49yx3s5dcj66qka",
+					Example: "nnbd tx tax update-params --mca_tax 0.4 --mca_address mantra1axznhnm82lah8qqvp9hxdad49yx3s5dcj66qka",
 				},
 			},
 		},

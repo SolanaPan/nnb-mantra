@@ -4,7 +4,7 @@ import (
 	"context"
 
 	errorsmod "cosmossdk.io/errors"
-	"github.com/MANTRA-Chain/mantrachain/v5/x/sanction/types"
+	"github.com/SolanaPan/nnb/v1/x/sanction/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
 

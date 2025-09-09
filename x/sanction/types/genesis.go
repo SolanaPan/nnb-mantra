@@ -3,7 +3,7 @@ package types
 import (
 	"fmt"
 
-	_ "github.com/MANTRA-Chain/mantrachain/v5/app/params"
+	_ "github.com/SolanaPan/nnb/v1/app/params"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 

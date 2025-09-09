@@ -2,7 +2,7 @@ package v5
 
 import (
 	"cosmossdk.io/store/types"
-	"github.com/MANTRA-Chain/mantrachain/v5/app/upgrades"
+	"github.com/SolanaPan/nnb/v1/app/upgrades"
 	erc20types "github.com/cosmos/evm/x/erc20/types"
 	precisebanktypes "github.com/cosmos/evm/x/precisebank/types"
 	evmtypes "github.com/cosmos/evm/x/vm/types"

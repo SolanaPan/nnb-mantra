@@ -6,7 +6,7 @@
   build-target: |
     LEDGER_ENABLED=true BUILD_TAGS='muslc osusergo' LINK_STATICALLY=true make build
   binaries:
-    - build/mantrachaind
+    - build/nnbd
   platforms:
     - linux/amd64
     # - linux/arm64

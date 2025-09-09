@@ -40,7 +40,7 @@ import (
 )
 
 const (
-	mantrachaindBinary = "mantrachaind"
+	mantrachaindBinary = "nnbd"
 	txCommand          = "tx"
 	queryCommand       = "query"
 	keysCommand        = "keys"

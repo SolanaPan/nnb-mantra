@@ -1,6 +1,6 @@
 ---
 version: 2
-project_name: mantrachaind
+project_name: nnbd
 
 env:
   - GO111MODULE=on
@@ -11,9 +11,9 @@ before:
     - wget https://github.com/CosmWasm/wasmvm/releases/download/{{ .Env.COSMWASM_VERSION }}/checksums.txt -O /tmp/checksums.txt
 
 builds:
-  - id: mantrachaind-darwin-amd64
-    main: ./cmd/mantrachaind/main.go
-    binary: mantrachaind
+  - id: nnbd-darwin-amd64
+    main: ./cmd/nnbd/main.go
+    binary: nnbd
     hooks:
       pre:
         - wget https://github.com/CosmWasm/wasmvm/releases/download/{{ .Env.COSMWASM_VERSION }}/libwasmvmstatic_darwin.a -O /lib/libwasmvmstatic_darwin.a
@@ -31,7 +31,7 @@ builds:
       - -trimpath
     ldflags:
       - -X github.com/cosmos/cosmos-sdk/version.Name=mantrachain
-      - -X github.com/cosmos/cosmos-sdk/version.AppName=mantrachaind
+      - -X github.com/cosmos/cosmos-sdk/version.AppName=nnbd
       - -X github.com/cosmos/cosmos-sdk/version.Version={{ .Version }}
       - -X github.com/cosmos/cosmos-sdk/version.Commit={{ .ShortCommit }}
       - -X github.com/cosmos/cosmos-sdk/version.BuildTags=netgo,ledger,static_wasm
@@ -44,9 +44,9 @@ builds:
       - pebbledb
       - static_wasm
 
-  - id: mantrachaind-darwin-arm64
-    main: ./cmd/mantrachaind/main.go
-    binary: mantrachaind
+  - id: nnbd-darwin-arm64
+    main: ./cmd/nnbd/main.go
+    binary: nnbd
     hooks:
       pre:
         - wget https://github.com/CosmWasm/wasmvm/releases/download/{{ .Env.COSMWASM_VERSION }}/libwasmvmstatic_darwin.a -O /lib/libwasmvmstatic_darwin.a
@@ -64,7 +64,7 @@ builds:
       - -trimpath
     ldflags:
       - -X github.com/cosmos/cosmos-sdk/version.Name=mantrachain
-      - -X github.com/cosmos/cosmos-sdk/version.AppName=mantrachaind
+      - -X github.com/cosmos/cosmos-sdk/version.AppName=nnbd
       - -X github.com/cosmos/cosmos-sdk/version.Version={{ .Version }}
       - -X github.com/cosmos/cosmos-sdk/version.Commit={{ .ShortCommit }}
       - -X github.com/cosmos/cosmos-sdk/version.BuildTags=netgo,ledger,static_wasm
@@ -77,9 +77,9 @@ builds:
       - pebbledb
       - static_wasm
 
-  - id: mantrachaind-linux-amd64
-    main: ./cmd/mantrachaind
-    binary: mantrachaind
+  - id: nnbd-linux-amd64
+    main: ./cmd/nnbd
+    binary: nnbd
     hooks:
       pre:
         - apk add --update linux-headers
@@ -95,7 +95,7 @@ builds:
       - -trimpath
     ldflags:
       - -X github.com/cosmos/cosmos-sdk/version.Name=mantrachain
-      - -X github.com/cosmos/cosmos-sdk/version.AppName=mantrachaind
+      - -X github.com/cosmos/cosmos-sdk/version.AppName=nnbd
       - -X github.com/cosmos/cosmos-sdk/version.Version={{ .Version }}
       - -X github.com/cosmos/cosmos-sdk/version.Commit={{ .ShortCommit }}
       - -X github.com/cosmos/cosmos-sdk/version.BuildTags=netgo,ledger,muslc,osusergo
@@ -110,9 +110,9 @@ builds:
       - osusergo
       - pebbledb
 
-  - id: mantrachaind-linux-arm64
-    main: ./cmd/mantrachaind
-    binary: mantrachaind
+  - id: nnbd-linux-arm64
+    main: ./cmd/nnbd
+    binary: nnbd
     hooks:
       pre:
         - apk add --update linux-headers
@@ -128,7 +128,7 @@ builds:
       - -trimpath
     ldflags:
       - -X github.com/cosmos/cosmos-sdk/version.Name=mantrachain
-      - -X github.com/cosmos/cosmos-sdk/version.AppName=mantrachaind
+      - -X github.com/cosmos/cosmos-sdk/version.AppName=nnbd
       - -X github.com/cosmos/cosmos-sdk/version.Version={{ .Version }}
       - -X github.com/cosmos/cosmos-sdk/version.Commit={{ .ShortCommit }}
       - -X github.com/cosmos/cosmos-sdk/version.BuildTags=netgo,ledger,muslc,osusergo
@@ -146,20 +146,20 @@ builds:
 archives:
   - id: zipped
     builds:
-      - mantrachaind-linux-amd64
-      - mantrachaind-linux-arm64
-      - mantrachaind-darwin-amd64
-      - mantrachaind-darwin-arm64
+      - nnbd-linux-amd64
+      - nnbd-linux-arm64
+      - nnbd-darwin-amd64
+      - nnbd-darwin-arm64
     name_template: "{{.ProjectName}}-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
     format: tar.gz
     files:
       - none*
   - id: binaries
     builds:
-      - mantrachaind-linux-amd64
-      - mantrachaind-linux-arm64
-      - mantrachaind-darwin-amd64
-      - mantrachaind-darwin-arm64
+      - nnbd-linux-amd64
+      - nnbd-linux-arm64
+      - nnbd-darwin-amd64
+      - nnbd-darwin-arm64
     name_template: "{{.ProjectName}}-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
     format: binary
     files:

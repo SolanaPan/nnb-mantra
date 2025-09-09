@@ -1,4 +1,4 @@
-module github.com/MANTRA-Chain/mantrachain/v5/tests/connect
+module github.com/SolanaPan/nnb/v1/tests/connect
 
 go 1.23.6
 

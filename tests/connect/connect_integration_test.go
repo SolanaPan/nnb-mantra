@@ -87,7 +87,7 @@ var (
 			Name:           "slinky",
 			Denom:          denom,
 			ChainID:        "chain-id-0",
-			Bin:            "mantrachaind",
+			Bin:            "nnbd",
 			Bech32Prefix:   "mantra",
 			CoinType:       "118",
 			GasAdjustment:  gasAdjustment,

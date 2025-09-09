@@ -1,11 +1,11 @@
 ---
 version: 2
-project_name: mantrachaind
+project_name: nnbd
 
 builds:
-  - id: mantrachaind-darwin-amd64
+  - id: nnbd-darwin-amd64
     main: ./scripts/ci-goreleaser/goreleaser.go
-    binary: mantrachaind
+    binary: nnbd
     goos:
       - darwin
     goarch:
@@ -14,9 +14,9 @@ builds:
       post:
         - ./scripts/ci-goreleaser/.goreleaser_hook.sh {{ .Arch }} {{ .Os }} {{ .ProjectName }}
 
-  - id: mantrachaind-darwin-arm64
+  - id: nnbd-darwin-arm64
     main: ./scripts/ci-goreleaser/goreleaser.go
-    binary: mantrachaind
+    binary: nnbd
     goos:
       - darwin
     goarch:
@@ -25,9 +25,9 @@ builds:
       post:
         - ./scripts/ci-goreleaser/.goreleaser_hook.sh {{ .Arch }} {{ .Os }} {{ .ProjectName }}
 
-  - id: mantrachaind-linux-amd64
+  - id: nnbd-linux-amd64
     main: ./scripts/ci-goreleaser/goreleaser.go
-    binary: mantrachaind
+    binary: nnbd
     goos:
       - linux
     goarch:
@@ -36,9 +36,9 @@ builds:
       post:
         - ./scripts/ci-goreleaser/.goreleaser_hook.sh {{ .Arch }} {{ .Os }} {{ .ProjectName }}
 
-  - id: mantrachaind-linux-arm64
+  - id: nnbd-linux-arm64
     main: ./scripts/ci-goreleaser/goreleaser.go
-    binary: mantrachaind
+    binary: nnbd
     goos:
       - linux
     goarch:
@@ -50,20 +50,20 @@ builds:
 archives:
   - id: zipped
     builds:
-      - mantrachaind-linux-amd64
-      - mantrachaind-linux-arm64
-      - mantrachaind-darwin-amd64
-      - mantrachaind-darwin-arm64
+      - nnbd-linux-amd64
+      - nnbd-linux-arm64
+      - nnbd-darwin-amd64
+      - nnbd-darwin-arm64
     name_template: "{{.ProjectName}}-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
     format: tar.gz
     files:
       - none*
   - id: binaries
     builds:
-      - mantrachaind-linux-amd64
-      - mantrachaind-linux-arm64
-      - mantrachaind-darwin-amd64
-      - mantrachaind-darwin-arm64
+      - nnbd-linux-amd64
+      - nnbd-linux-arm64
+      - nnbd-darwin-amd64
+      - nnbd-darwin-arm64
     name_template: "{{.ProjectName}}-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
     format: binary
     files:

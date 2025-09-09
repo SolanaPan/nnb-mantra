@@ -75,7 +75,7 @@ func (s *IntegrationTestSuite) execEncode(
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
-	s.T().Logf("%s - Executing mantrachaind encoding with %v", c.id, txPath)
+	s.T().Logf("%s - Executing nnbd encoding with %v", c.id, txPath)
 	mantraCommand := []string{
 		mantrachaindBinary,
 		txCommand,
@@ -107,7 +107,7 @@ func (s *IntegrationTestSuite) execDecode(
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
-	s.T().Logf("%s - Executing mantrachaind decoding with %v", c.id, txPath)
+	s.T().Logf("%s - Executing nnbd decoding with %v", c.id, txPath)
 	mantraCommand := []string{
 		mantrachaindBinary,
 		txCommand,
@@ -140,7 +140,7 @@ func (s *IntegrationTestSuite) execVestingTx(
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
-	s.T().Logf("%s - Executing mantrachaind %s with %v", c.id, method, args)
+	s.T().Logf("%s - Executing nnbd %s with %v", c.id, method, args)
 	mantraCommand := []string{
 		mantrachaindBinary,
 		txCommand,
@@ -164,7 +164,7 @@ func (s *IntegrationTestSuite) execCreatePeriodicVestingAccount(
 	jsonPath string,
 	opt ...flagOption,
 ) {
-	s.T().Logf("Executing mantrachaind create periodic vesting account %s", c.id)
+	s.T().Logf("Executing nnbd create periodic vesting account %s", c.id)
 	s.execVestingTx(c, "create-periodic-vesting-account", []string{address, jsonPath}, opt...)
 	s.T().Logf("successfully created periodic vesting account %s with %s", address, jsonPath)
 }
@@ -177,7 +177,7 @@ func (s *IntegrationTestSuite) execUnjail(
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
-	s.T().Logf("Executing mantrachaind slashing unjail %s with options: %v", c.id, opt)
+	s.T().Logf("Executing nnbd slashing unjail %s with options: %v", c.id, opt)
 	mantraCommand := []string{
 		mantrachaindBinary,
 		txCommand,
@@ -331,7 +331,7 @@ func (s *IntegrationTestSuite) execDistributionFundCommunityPool(c *chain, valId
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
-	s.T().Logf("Executing mantrachaind tx distribution fund-community-pool on chain %s", c.id)
+	s.T().Logf("Executing nnbd tx distribution fund-community-pool on chain %s", c.id)
 
 	mantraCommand := []string{
 		mantrachaindBinary,
@@ -377,7 +377,7 @@ func (s *IntegrationTestSuite) runGovExec(c *chain, valIdx int, submitterAddr, g
 	}
 
 	mantraCommand = concatFlags(mantraCommand, proposalFlags, generalFlags)
-	s.T().Logf("Executing mantrachaind tx gov %s on chain %s", govCommand, c.id)
+	s.T().Logf("Executing nnbd tx gov %s on chain %s", govCommand, c.id)
 	s.executeTxCommand(ctx, c, mantraCommand, valIdx, validateResponse)
 	s.T().Logf("Successfully executed %s", govCommand)
 }
@@ -431,7 +431,7 @@ func (s *IntegrationTestSuite) execDelegate(c *chain, valIdx int, amount, valOpe
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
-	s.T().Logf("Executing mantrachaind tx staking delegate %s", c.id)
+	s.T().Logf("Executing nnbd tx staking delegate %s", c.id)
 
 	mantraCommand := []string{
 		mantrachaindBinary,
@@ -458,7 +458,7 @@ func (s *IntegrationTestSuite) execUnbondDelegation(c *chain, valIdx int, amount
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
-	s.T().Logf("Executing mantrachaind tx staking unbond %s", c.id)
+	s.T().Logf("Executing nnbd tx staking unbond %s", c.id)
 
 	mantraCommand := []string{
 		mantrachaindBinary,
@@ -485,7 +485,7 @@ func (s *IntegrationTestSuite) execCancelUnbondingDelegation(c *chain, valIdx in
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
-	s.T().Logf("Executing mantrachaind tx staking cancel-unbond %s", c.id)
+	s.T().Logf("Executing nnbd tx staking cancel-unbond %s", c.id)
 
 	mantraCommand := []string{
 		mantrachaindBinary,
@@ -514,7 +514,7 @@ func (s *IntegrationTestSuite) execRedelegate(c *chain, valIdx int, amount, orig
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
-	s.T().Logf("Executing mantrachaind tx staking redelegate %s", c.id)
+	s.T().Logf("Executing nnbd tx staking redelegate %s", c.id)
 
 	mantraCommand := []string{
 		mantrachaindBinary,
@@ -782,7 +782,7 @@ func (s *IntegrationTestSuite) expectTxSubmitError(expectErrString string) func(
 // 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 // 	defer cancel()
 
-// 	s.T().Logf("Executing mantrachaind tx staking validator-bond %s", c.id)
+// 	s.T().Logf("Executing nnbd tx staking validator-bond %s", c.id)
 
 // 	mantraCommand := []string{
 // 		mantrachaindBinary,
@@ -807,7 +807,7 @@ func (s *IntegrationTestSuite) expectTxSubmitError(expectErrString string) func(
 // 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 // 	defer cancel()
 
-// 	s.T().Logf("Executing mantrachaind tx staking tokenize-share %s", c.id)
+// 	s.T().Logf("Executing nnbd tx staking tokenize-share %s", c.id)
 
 // 	mantraCommand := []string{
 // 		mantrachaindBinary,
@@ -836,7 +836,7 @@ func (s *IntegrationTestSuite) executeRedeemShares(c *chain, valIdx int, amount,
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
-	s.T().Logf("Executing mantrachaind tx staking redeem-tokens %s", c.id)
+	s.T().Logf("Executing nnbd tx staking redeem-tokens %s", c.id)
 
 	mantraCommand := []string{
 		mantrachaindBinary,
@@ -863,7 +863,7 @@ func (s *IntegrationTestSuite) executeTransferTokenizeShareRecord(c *chain, valI
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
-	s.T().Logf("Executing mantrachaind tx staking transfer-tokenize-share-record %s", c.id)
+	s.T().Logf("Executing nnbd tx staking transfer-tokenize-share-record %s", c.id)
 
 	mantraCommand := []string{
 		mantrachaindBinary,
