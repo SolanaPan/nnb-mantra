@@ -144,7 +144,7 @@ func (s *IntegrationTestSuite) registerICAAccount(c *chain, valIdx int, sender, 
 	}))
 
 	icaCmd := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		"interchain-accounts",
 		"controller",
@@ -170,7 +170,7 @@ func (s *IntegrationTestSuite) sendICATransaction(c *chain, valIdx int, sender, 
 	defer cancel()
 
 	icaCmd := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		"interchain-accounts",
 		"controller",

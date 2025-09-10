@@ -7,7 +7,7 @@ import (
 	clienthelpers "cosmossdk.io/client/v2/helpers"
 	wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
 	"github.com/SolanaPan/nnb/v1/app"
-	"github.com/SolanaPan/nnb/v1/cmd/mantrachaind/cmd"
+	"github.com/SolanaPan/nnb/v1/cmd/nnbd/cmd"
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	evmdcfg "github.com/cosmos/evm/cmd/evmd/config"

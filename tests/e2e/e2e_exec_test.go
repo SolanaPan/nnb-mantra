@@ -77,7 +77,7 @@ func (s *IntegrationTestSuite) execEncode(
 
 	s.T().Logf("%s - Executing nnbd encoding with %v", c.id, txPath)
 	mantraCommand := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		"encode",
 		txPath,
@@ -109,7 +109,7 @@ func (s *IntegrationTestSuite) execDecode(
 
 	s.T().Logf("%s - Executing nnbd decoding with %v", c.id, txPath)
 	mantraCommand := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		"decode",
 		txPath,
@@ -142,7 +142,7 @@ func (s *IntegrationTestSuite) execVestingTx(
 
 	s.T().Logf("%s - Executing nnbd %s with %v", c.id, method, args)
 	mantraCommand := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		vestingtypes.ModuleName,
 		method,
@@ -179,7 +179,7 @@ func (s *IntegrationTestSuite) execUnjail(
 
 	s.T().Logf("Executing nnbd slashing unjail %s with options: %v", c.id, opt)
 	mantraCommand := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		slashingtypes.ModuleName,
 		"unjail",
@@ -206,7 +206,7 @@ func (s *IntegrationTestSuite) execFeeGrant(c *chain, valIdx int, granter, grant
 	s.T().Logf("granting %s fee from %s on chain %s", grantee, granter, c.id)
 
 	mantraCommand := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		feegrant.ModuleName,
 		"grant",
@@ -236,7 +236,7 @@ func (s *IntegrationTestSuite) execFeeGrant(c *chain, valIdx int, granter, grant
 // 	s.T().Logf("revoking %s fee grant from %s on chain %s", grantee, granter, c.id)
 
 // 	mantraCommand := []string{
-// 		mantrachaindBinary,
+// 		nnbdBinary,
 // 		txCommand,
 // 		feegrant.ModuleName,
 // 		"revoke",
@@ -273,7 +273,7 @@ func (s *IntegrationTestSuite) execBankSend(
 	s.T().Logf("sending %s tokens from %s to %s on chain %s", amt, from, to, c.id)
 
 	mantraCommand := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		banktypes.ModuleName,
 		"send",
@@ -310,7 +310,7 @@ func (s *IntegrationTestSuite) execBankMultiSend(
 	s.T().Logf("sending %s tokens from %s to %s on chain %s", amt, from, to, c.id)
 
 	mantraCommand := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		banktypes.ModuleName,
 		"multi-send",
@@ -334,7 +334,7 @@ func (s *IntegrationTestSuite) execDistributionFundCommunityPool(c *chain, valId
 	s.T().Logf("Executing nnbd tx distribution fund-community-pool on chain %s", c.id)
 
 	mantraCommand := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		distributiontypes.ModuleName,
 		"fund-community-pool",
@@ -360,7 +360,7 @@ func (s *IntegrationTestSuite) runGovExec(c *chain, valIdx int, submitterAddr, g
 	}
 
 	mantraCommand := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		govtypes.ModuleName,
 		govCommand,
@@ -388,7 +388,7 @@ func (s *IntegrationTestSuite) runGovExec(c *chain, valIdx int, submitterAddr, g
 // 	defer cancel()
 
 // 	mantraCommand := []string{
-// 		mantrachaindBinary,
+// 		nnbdBinary,
 // 		keysCommand,
 // 		"add",
 // 		name,
@@ -399,7 +399,7 @@ func (s *IntegrationTestSuite) runGovExec(c *chain, valIdx int, submitterAddr, g
 
 // 	var addrRecord AddressResponse
 // 	s.executeTxCommand(ctx, c, mantraCommand, valIdx, func(stdOut []byte, stdErr []byte) bool {
-// 		// Mantrachaind keys add by default returns payload to stdErr
+// 		// nnbd keys add by default returns payload to stdErr
 // 		if err := json.Unmarshal(stdErr, &addrRecord); err != nil {
 // 			return false
 // 		}
@@ -414,7 +414,7 @@ func (s *IntegrationTestSuite) runGovExec(c *chain, valIdx int, submitterAddr, g
 // 	defer cancel()
 
 // 	mantraCommand := []string{
-// 		mantrachaindBinary,
+// 		nnbdBinary,
 // 		keysCommand,
 // 		"list",
 // 		"--keyring-backend=test",
@@ -434,7 +434,7 @@ func (s *IntegrationTestSuite) execDelegate(c *chain, valIdx int, amount, valOpe
 	s.T().Logf("Executing nnbd tx staking delegate %s", c.id)
 
 	mantraCommand := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		stakingtypes.ModuleName,
 		"delegate",
@@ -461,7 +461,7 @@ func (s *IntegrationTestSuite) execUnbondDelegation(c *chain, valIdx int, amount
 	s.T().Logf("Executing nnbd tx staking unbond %s", c.id)
 
 	mantraCommand := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		stakingtypes.ModuleName,
 		"unbond",
@@ -488,7 +488,7 @@ func (s *IntegrationTestSuite) execCancelUnbondingDelegation(c *chain, valIdx in
 	s.T().Logf("Executing nnbd tx staking cancel-unbond %s", c.id)
 
 	mantraCommand := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		stakingtypes.ModuleName,
 		"cancel-unbond",
@@ -517,7 +517,7 @@ func (s *IntegrationTestSuite) execRedelegate(c *chain, valIdx int, amount, orig
 	s.T().Logf("Executing nnbd tx staking redelegate %s", c.id)
 
 	mantraCommand := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		stakingtypes.ModuleName,
 		"redelegate",
@@ -549,7 +549,7 @@ func (s *IntegrationTestSuite) getLatestBlockHeight(c *chain, valIdx int) int {
 	}
 
 	var currentHeight int
-	mantraCommand := []string{mantrachaindBinary, "status"}
+	mantraCommand := []string{nnbdBinary, "status"}
 	s.executeTxCommand(ctx, c, mantraCommand, valIdx, func(stdOut []byte, stdErr []byte) bool {
 		var (
 			err   error
@@ -589,7 +589,7 @@ func (s *IntegrationTestSuite) execSetWithdrawAddress(
 
 	s.T().Logf("Setting distribution withdrawal address on chain %s for %s to %s", c.id, delegatorAddress, newWithdrawalAddress)
 	mantraCommand := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		distributiontypes.ModuleName,
 		"set-withdraw-addr",
@@ -619,7 +619,7 @@ func (s *IntegrationTestSuite) execWithdrawReward(
 
 	s.T().Logf("Withdrawing distribution rewards on chain %s for delegator %s from %s validator", c.id, delegatorAddress, validatorAddress)
 	mantraCommand := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		distributiontypes.ModuleName,
 		"withdraw-rewards",
@@ -785,7 +785,7 @@ func (s *IntegrationTestSuite) expectTxSubmitError(expectErrString string) func(
 // 	s.T().Logf("Executing nnbd tx staking validator-bond %s", c.id)
 
 // 	mantraCommand := []string{
-// 		mantrachaindBinary,
+// 		nnbdBinary,
 // 		txCommand,
 // 		stakingtypes.ModuleName,
 // 		"validator-bond",
@@ -810,7 +810,7 @@ func (s *IntegrationTestSuite) expectTxSubmitError(expectErrString string) func(
 // 	s.T().Logf("Executing nnbd tx staking tokenize-share %s", c.id)
 
 // 	mantraCommand := []string{
-// 		mantrachaindBinary,
+// 		nnbdBinary,
 // 		txCommand,
 // 		stakingtypes.ModuleName,
 // 		"tokenize-share",
@@ -839,7 +839,7 @@ func (s *IntegrationTestSuite) executeRedeemShares(c *chain, valIdx int, amount,
 	s.T().Logf("Executing nnbd tx staking redeem-tokens %s", c.id)
 
 	mantraCommand := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		stakingtypes.ModuleName,
 		"redeem-tokens",
@@ -866,7 +866,7 @@ func (s *IntegrationTestSuite) executeTransferTokenizeShareRecord(c *chain, valI
 	s.T().Logf("Executing nnbd tx staking transfer-tokenize-share-record %s", c.id)
 
 	mantraCommand := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		stakingtypes.ModuleName,
 		"transfer-tokenize-share-record",
@@ -895,7 +895,7 @@ func (s *IntegrationTestSuite) signTxFileOnline(chain *chain, valIdx int, from s
 	defer cancel()
 
 	mantraCommand := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		"sign",
 		filepath.Join(mantraHomePath, txFilePath),
@@ -932,7 +932,7 @@ func (s *IntegrationTestSuite) broadcastTxFile(chain *chain, valIdx int, from st
 	defer cancel()
 
 	broadcastTxCmd := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		"broadcast",
 		filepath.Join(mantraHomePath, txFilePath),

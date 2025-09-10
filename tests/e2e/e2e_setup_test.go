@@ -40,14 +40,14 @@ import (
 )
 
 const (
-	mantrachaindBinary = "nnbd"
-	txCommand          = "tx"
-	queryCommand       = "query"
-	keysCommand        = "keys"
-	mantraHomePath     = "/home/nonroot/.mantrachain"
-	uomDenom           = "uom"
-	initBalanceStr     = "100000000000000000uom"
-	minGasPrice        = "0.01"
+	nnbdBinary     = "nnbd"
+	txCommand      = "tx"
+	queryCommand   = "query"
+	keysCommand    = "keys"
+	mantraHomePath = "/home/nonroot/.mantrachain"
+	uomDenom       = "uom"
+	initBalanceStr = "100000000000000000uom"
+	minGasPrice    = "0.01"
 	// the test basefee in genesis is the same as minGasPrice
 	// global fee lower/higher than min_gas_price
 	initialBaseFeeAmt               = "0.01"

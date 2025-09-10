@@ -39,7 +39,7 @@ func (s *IntegrationTestSuite) execQueryEvidence(c *chain, valIdx int, hash stri
 	s.T().Logf("querying evidence %s on chain %s", hash, c.id)
 
 	command := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		queryCommand,
 		evidencetypes.ModuleName,
 		hash,

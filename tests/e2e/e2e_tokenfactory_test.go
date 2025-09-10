@@ -342,7 +342,7 @@ func (s *IntegrationTestSuite) createDenom(c *chain, valIdx int, sender, subdeno
 	defer cancel()
 
 	ibcCmd := []string{
-		mantrachaindBinary,
+		nnbdBinary,
 		txCommand,
 		"tokenfactory",
 		"create-denom",
@@ -374,7 +374,7 @@ func (s *IntegrationTestSuite) mintDenom(c *chain, valIdx int, sender, mintCoin,
 	var ibcCmd []string
 	if mintTo == "" {
 		ibcCmd = []string{
-			mantrachaindBinary,
+			nnbdBinary,
 			txCommand,
 			"tokenfactory",
 			"mint",
@@ -392,7 +392,7 @@ func (s *IntegrationTestSuite) mintDenom(c *chain, valIdx int, sender, mintCoin,
 		mintTo = sender
 	} else {
 		ibcCmd = []string{
-			mantrachaindBinary,
+			nnbdBinary,
 			txCommand,
 			"tokenfactory",
 			"mint",
@@ -427,7 +427,7 @@ func (s *IntegrationTestSuite) burnDenom(c *chain, valIdx int, sender, burnCoin,
 	var ibcCmd []string
 	if burnFrom == "" {
 		ibcCmd = []string{
-			mantrachaindBinary,
+			nnbdBinary,
 			txCommand,
 			"tokenfactory",
 			"burn",
@@ -445,7 +445,7 @@ func (s *IntegrationTestSuite) burnDenom(c *chain, valIdx int, sender, burnCoin,
 		burnFrom = sender
 	} else {
 		ibcCmd = []string{
-			mantrachaindBinary,
+			nnbdBinary,
 			txCommand,
 			"tokenfactory",
 			"burn",
