@@ -46,6 +46,9 @@ import (
 	v5 "github.com/SolanaPan/nnb/v1/app/upgrades/v5"
 	_ "github.com/SolanaPan/nnb/v1/client/docs/statik"
 	"github.com/SolanaPan/nnb/v1/client/docs/swagger"
+	kyckeeper "github.com/SolanaPan/nnb/v1/x/kyc/keeper"
+	kyc "github.com/SolanaPan/nnb/v1/x/kyc/module"
+	kyctypes "github.com/SolanaPan/nnb/v1/x/kyc/types"
 	sanctionkeeper "github.com/SolanaPan/nnb/v1/x/sanction/keeper"
 	sanction "github.com/SolanaPan/nnb/v1/x/sanction/module"
 	sanctiontypes "github.com/SolanaPan/nnb/v1/x/sanction/types"
@@ -287,6 +290,7 @@ type App struct {
 	TokenFactoryKeeper tokenfactorykeeper.Keeper
 	TaxKeeper          taxkeeper.Keeper
 	SanctionKeeper     sanctionkeeper.Keeper
+	KycKeeper          kyckeeper.Keeper
 
 	// Cosmos EVM keepers
 	FeeMarketKeeper   feemarketkeeper.Keeper
@@ -541,6 +545,8 @@ func New(
 		&app.WasmKeeper,
 		authtypes.NewModuleAddress(govtypes.ModuleName).String(),
 	)
+
+	app.KycKeeper = kyckeeper.NewKeeper(keys[kyctypes.StoreKey])
 
 	app.SanctionKeeper = sanctionkeeper.NewKeeper(
 		appCodec,
@@ -881,6 +887,7 @@ func New(
 		tokenfactory.NewAppModule(appCodec, app.TokenFactoryKeeper),
 		tax.NewAppModule(appCodec, app.TaxKeeper),
 		sanction.NewAppModule(appCodec, app.SanctionKeeper),
+		kyc.NewAppModule(appCodec, app.KycKeeper),
 
 		// Cosmos EVM modules
 		vm.NewAppModule(app.EVMKeeper, app.AccountKeeper, app.AccountKeeper.AddressCodec()),
@@ -1154,6 +1161,7 @@ func (app *App) setAnteHandler(txConfig client.TxConfig, wasmConfig wasmtypes.No
 		TXCounterStoreService: runtime.NewKVStoreService(txCounterStoreKey),
 		CircuitKeeper:         &app.CircuitKeeper,
 		SanctionKeeper:        &app.SanctionKeeper,
+		KycKeeper:             &app.KycKeeper,
 	}
 
 	if err := handlerOpts.Validate(); err != nil {

@@ -8,6 +8,7 @@ import (
 	circuitkeeper "cosmossdk.io/x/circuit/keeper"
 	wasmkeeper "github.com/CosmWasm/wasmd/x/wasm/keeper"
 	wasmTypes "github.com/CosmWasm/wasmd/x/wasm/types"
+	kyckeeper "github.com/SolanaPan/nnb/v1/x/kyc/keeper"
 	sanctionkeeper "github.com/SolanaPan/nnb/v1/x/sanction/keeper"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/auth/ante"
@@ -29,6 +30,7 @@ type HandlerOptions struct {
 	TXCounterStoreService corestoretypes.KVStoreService
 	CircuitKeeper         *circuitkeeper.Keeper
 	SanctionKeeper        *sanctionkeeper.Keeper
+	KycKeeper             *kyckeeper.Keeper
 }
 
 // Validate checks if the keepers are defined
