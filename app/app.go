@@ -1031,6 +1031,7 @@ func New(
 		tokenfactorytypes.ModuleName,
 		taxtypes.ModuleName,
 		sanctiontypes.ModuleName,
+		kyctypes.ModuleName,
 
 		// market map genesis must be called AFTER all consuming modules (i.e. x/oracle, etc.)
 		oracletypes.ModuleName,

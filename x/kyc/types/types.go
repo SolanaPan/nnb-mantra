@@ -63,3 +63,32 @@ type MsgServer interface {
 type MsgSubmitKYCResponse struct{}
 type MsgApproveKYCResponse struct{}
 type MsgRejectKYCResponse struct{}
+
+// GenesisState defines the KYC module's genesis state.
+type GenesisState struct {
+	// Add genesis fields here as needed
+}
+
+// ProtoMessage implements the proto.Message interface.
+func (gs *GenesisState) ProtoMessage() {}
+
+// Reset implements the proto.Message interface.
+func (gs *GenesisState) Reset() {
+	*gs = GenesisState{}
+}
+
+// String implements the proto.Message interface.
+func (gs *GenesisState) String() string {
+	return "GenesisState"
+}
+
+// DefaultGenesis returns the default genesis state for the KYC module.
+func DefaultGenesis() *GenesisState {
+	return &GenesisState{}
+}
+
+// Validate performs basic genesis state validation returning an error upon any failure.
+func (gs GenesisState) Validate() error {
+	// Add validation logic here
+	return nil
+}

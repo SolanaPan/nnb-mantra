@@ -27,3 +27,13 @@ func (k Keeper) GetKYCStatus(ctx sdk.Context, addr sdk.AccAddress) types.KYCStat
 	}
 	return types.KYCStatus(bz[0])
 }
+
+// InitGenesis initializes the KYC module's genesis state.
+func (k Keeper) InitGenesis(ctx sdk.Context, genState types.GenesisState) {
+	// Initialize genesis state here if needed
+}
+
+// ExportGenesis returns the KYC module's exported genesis state.
+func (k Keeper) ExportGenesis(ctx sdk.Context) *types.GenesisState {
+	return types.DefaultGenesis()
+}
